@@ -1,5 +1,6 @@
 package App.Controllers;
 
+import App.DTO.UserProfileDTO;
 import App.DTO.UsersDTO;
 import App.Entities.User;
 import App.Exceptions.BigAskingException;
@@ -16,6 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 
 @RestController
+@RequestMapping("/api/1.0")
 @Validated
 @Slf4j
 public class UserController {
@@ -31,6 +33,12 @@ public class UserController {
                              @RequestParam(defaultValue = "10", required = false) @Min(1) @Max(100) int limit) {
         log.info("Request page number: " + page + "; Request limit records: " + limit + "; Request number " + counter.incrementAndGet());
         return userService.getUsers(page, limit);
+    }
+
+    @GetMapping("/profile/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public UserProfileDTO getProfile(@PathVariable Long id) {
+        return null;
     }
 
     @PostMapping("/modelUserTest")
