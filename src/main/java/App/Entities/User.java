@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -21,8 +20,14 @@ public class User {
     @NotBlank
     @Size(min = 2, max = 45)
     private String name;
+    private String fullName;
     private String uniqueUrlName;
     private String photos;
     private String status;
+    private String aboutMe;
+    @OneToOne
+    private Contacts contacts;
+    private String lookingForAJobDescription;
+    private Boolean lookingForAJob;
     private Boolean followed;
 }
