@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 
 @RestController
-@RequestMapping("/api/1.0")
+@RequestMapping("/api/1.0/users")
 @Validated
 @Slf4j
 public class UserController {
@@ -27,7 +27,7 @@ public class UserController {
 
     private AtomicLong counter = new AtomicLong(0);
 
-    @GetMapping("/users")
+    @GetMapping()
     @ResponseStatus(code = HttpStatus.OK)
     public UsersDTO getUsers(@RequestParam (defaultValue = "1", required = false) @Min(1) int page,
                              @RequestParam(defaultValue = "10", required = false) @Min(1) @Max(100) int limit) {
@@ -38,11 +38,7 @@ public class UserController {
     @GetMapping("/profile/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public UserProfileDTO getProfile(@PathVariable Long id) {
-        return null;
+        return userService.getProfile(id);
     }
 
-    @PostMapping("/modelUserTest")
-    public String modelUserTest() {
-        throw new BigAskingException();
-    }
 }
