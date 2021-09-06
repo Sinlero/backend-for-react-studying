@@ -17,7 +17,7 @@ public class UserProfileDTO {
     private String aboutMe;
     private String lookingForAJobDescription;
     private Boolean lookingForAJob;
-    private ContactsDTO contactsDTO;
+    private ContactsDTO contacts;
 
     public UserProfileDTO(User user) {
         name = user.getName();
@@ -27,7 +27,7 @@ public class UserProfileDTO {
         aboutMe = user.getAboutMe();
         lookingForAJobDescription = user.getLookingForAJobDescription();
         lookingForAJob = user.getLookingForAJob();
-        contactsDTO = new ContactsDTO(user.getContacts());
+        contacts = new ContactsDTO(user.getContacts());
     }
 
 }

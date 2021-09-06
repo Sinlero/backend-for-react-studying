@@ -38,6 +38,7 @@ public class UserController {
     @GetMapping("/profile/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public UserProfileDTO getProfile(@PathVariable Long id) {
+        log.info("Request user with id " + id);
         return userService.getProfile(id);
     }
 
