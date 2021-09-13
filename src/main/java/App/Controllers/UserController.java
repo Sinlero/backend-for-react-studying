@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 
 @RestController
-@RequestMapping("/api/1.0/users")
+@RequestMapping("/users")
 @Validated
 @Slf4j
 public class UserController {

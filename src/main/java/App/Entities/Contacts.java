@@ -17,7 +17,7 @@ public class Contacts {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    @OneToOne(mappedBy = "contacts")
+    @OneToOne
     private User user;
     private String facebook;
     private String website;
