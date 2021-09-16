@@ -20,9 +20,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 @RequestMapping("/users")
-@Validated
 @Slf4j
-public class UserController {
+public class UserController implements UserApi{
 
     @Autowired
     private UserService userService;
@@ -30,23 +29,12 @@ public class UserController {
     private AtomicLong counter = new AtomicLong(0);
 
     @GetMapping()
-    @ResponseStatus(code = HttpStatus.OK)
-    @Operation(summary = "Get list of users", description = "page > 1; 100 > limit > 1")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Well done", content = @Content(mediaType = "application/json")),
-            @ApiResponse(responseCode = "500", description = "NONONONONO")})
-    public UsersDTO getUsers(@RequestParam (defaultValue = "1", required = false) @Min(1) int page,
-                             @RequestParam(defaultValue = "10", required = false) @Min(1) @Max(100) int limit) {
+    public UsersDTO getUsers(int page, int limit) {
         log.info("Request page number: " + page + "; Request limit records: " + limit + "; Request number " + counter.incrementAndGet());
         return userService.getUsers(page, limit);
     }
 
     @GetMapping("/profile/{id}")
-    @ResponseStatus(code = HttpStatus.OK)
-    @Operation(summary = "Get profile of user", description = "GIMMEIDUSER", method = "GEEEEEEET")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Well done"),
-            @ApiResponse(responseCode = "404", description = "User not found", content = @Content(mediaType = "text/plain"))})
     public UserProfileDTO getProfile(@PathVariable Long id) {
         log.info("Request user with id " + id);
         return userService.getProfile(id);
