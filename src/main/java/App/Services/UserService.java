@@ -32,7 +32,7 @@ public class UserService {
     public UserProfileDTO getProfile(Long id) {
         User user = usersRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
         if (user.getContacts() == null) {
-            user.setContacts(new Contacts(null, user, "", "", "", "", "", "", "", ""));
+            user.setContacts(new Contacts(null, "", "", "", "", "", "", "", ""));
         }
         return new UserProfileDTO(user);
     }

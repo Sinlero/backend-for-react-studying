@@ -16,9 +16,6 @@ public class Contacts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    @OneToOne
-    private User user;
     private String facebook;
     private String website;
     private String vk;
