@@ -15,6 +15,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 @Validated
+@SuppressWarnings("unused")
 public interface UserApi {
 
     @ResponseStatus(code = HttpStatus.OK)
