@@ -28,8 +28,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors(Customizer.withDefaults()).authorizeRequests()
+                .antMatchers("/actuator/**", "/api-docs/**", "/api-ui/**").hasRole("ADMIN")
                 .antMatchers("/auth/**").authenticated()
-                .antMatchers("/**").permitAll()
+                .anyRequest().permitAll()
                 .and()
                 .httpBasic()
                 .and()
